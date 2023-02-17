@@ -9,5 +9,6 @@ namespace LanchesMac.Context
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Snack> Snacks { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }

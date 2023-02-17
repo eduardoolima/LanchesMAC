@@ -1,0 +1,20 @@
+﻿@model LanchesMac.ViewModel.SnackListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model.CurrentCategory</h1>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var snack in Model.Snacks)
+        {
+            <partial name="_snacksResume" for="@snack"></partial>
+        }
+    </div>
+</div>
+
+
+
