@@ -21,6 +21,7 @@ public class Startup
 
         services.AddTransient<ISnackRepository, SnackRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
+        services.AddTransient<IOrderRepository, OrderRepository>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => ShoppingCart.GetShoppingCart(sp));
 
@@ -51,6 +52,11 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapControllerRoute(
+                name: "categoryFilter",
+                pattern: "Snack/{action}/{category?}",
+                defaults: new {Controller = "Snack", action = "Index"});
+
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

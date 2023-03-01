@@ -29,9 +29,9 @@ namespace LanchesMac.Controllers
             return View(shoppingCartVM);
         }
 
-        public IActionResult AddItemToShoppingCart(int snackId)
+        public IActionResult AddItemToShoppingCart(int id)
         {
-            var selectedSnack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == snackId);
+            var selectedSnack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == id);
 
             if(selectedSnack != null)
             {
@@ -40,9 +40,9 @@ namespace LanchesMac.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult RemoveItemFromShoppingCart(int snackId)
+        public IActionResult RemoveItemFromShoppingCart(int id)
         {
-            var selectedSnack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == snackId);
+            var selectedSnack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == id);
 
             if (selectedSnack != null)
             {
