@@ -20,6 +20,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    @await Html.PartialAsync("_LoginPartial")
                     @await Component.InvokeAsync("ShoppingCartResume")
                     @await Component.InvokeAsync("CategoryMenu")
                     @*<a class="nav-link text-light" asp-area="" asp-controller="Lanche" asp-action="List">Lanches</a>*@
@@ -29,7 +30,10 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Procurar produto" name="searchString" value="@ViewData["searchString"]">
                         </div>
-                    </form>
+                    </form>   
+                    @if(User.IsInRole("Admin")){
+                        <a class="nav-link text-light" asp-area="Admin" asp-controller="Admin" asp-action="Index">Administração</a>
+                    }
                 </div>
             </div>
         </nav>

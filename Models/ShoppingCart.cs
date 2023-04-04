@@ -92,6 +92,7 @@ namespace LanchesMac.Models
         {
             var items = _context.ShoppingCartItems.Where(c => c.ShoppingCartId == Id);
             _context.ShoppingCartItems.RemoveRange(items);
+            _context.SaveChanges();
         }
 
         public decimal GetShoppingCartTotal()

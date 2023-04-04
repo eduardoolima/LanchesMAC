@@ -15,12 +15,12 @@ namespace LanchesMac.Components
 
         public IViewComponentResult Invoke()
         {
-            //var itens = _shoppingCart.GetShoppingCartItems();
-            var itens = new List<ShoppingCartItem>()
-            {
-                new ShoppingCartItem(),
-                new ShoppingCartItem()
-            };
+            var itens = _shoppingCart.GetShoppingCartItems();
+            //var itens = new List<ShoppingCartItem>()
+            //{
+            //    new ShoppingCartItem(),
+            //    new ShoppingCartItem()
+            //};
             _shoppingCart.ShoppingCartItems = itens;
 
             var shoppingCartVM = new ShoppingCartViewModel()
