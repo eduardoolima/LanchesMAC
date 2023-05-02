@@ -1,0 +1,45 @@
+﻿<table border="0" width="100%">
+    <tr>
+        <td>
+            <form method="post" enctype="multipart/form-data" asp-controller="AdminImages" asp-action="UploadFiles">
+                <img src="~/images/icons8-fazer-upload.gif" width="200" height="150" />
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <p><b>Selecione um ou mais arquivos para enviar:</b></p>
+                        <p>(Arquivos com o mesmo nome serão sobrescritos)</p>
+                        <input type="file" name="files" multiple class="button btn-outline-primary"/>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Enviar Arquivo(s)" class="button btn-outline-primary" />
+                    </div>
+                </div>
+            </form>
+        </td>
+        <td>
+            <form method="post" enctype="multipart/form-data" asp-controller="AdminImages" asp-action="GetImages">
+                <img src="data:image/png;base64,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">
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <p><strong>Vizualizar imagens ma pasta do servidor</strong></p>                                                
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Visualizar Arquivos no servidor" class="button btn-outline-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+</table>
+<div>
+    @if(ViewData["Deleted"] != null){
+        <li>@ViewData["Deleted"]</li>
+    }
+</div>

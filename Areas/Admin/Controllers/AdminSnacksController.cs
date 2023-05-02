@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LanchesMac.Context;
 using LanchesMac.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace LanchesMac.Areas.Admin.Controllers
 {
@@ -21,10 +22,16 @@ namespace LanchesMac.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminSnacks
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Name")
         {
-            var appDbContext = _context.Snacks.Include(s => s.Category);
-            return View(await appDbContext.ToListAsync());
+            var result = _context.Snacks.Include(c => c.Category).AsQueryable();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                result = result.Where(o => o.Name.Contains(filter));
+            }
+            var model = await PagingList.CreateAsync(result, 5, pageindex, sort, "Name");
+            model.RouteValue = new RouteValueDictionary { { "Filter", filter } };
+            return View(model);
         }
 
         // GET: Admin/AdminSnacks/Details/5
@@ -66,7 +73,7 @@ namespace LanchesMac.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", snack.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", snack.CategoryId);
             return View(snack);
         }
 
@@ -83,7 +90,7 @@ namespace LanchesMac.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", snack.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", snack.CategoryId);
             return View(snack);
         }
 
@@ -119,7 +126,7 @@ namespace LanchesMac.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", snack.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", snack.CategoryId);
             return View(snack);
         }
 

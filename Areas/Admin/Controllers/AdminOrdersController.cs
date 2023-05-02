@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LanchesMac.Context;
 using LanchesMac.Models;
+using ReflectionIT.Mvc.Paging;
+using LanchesMac.ViewModel;
 
 namespace LanchesMac.Areas.Admin.Controllers
 {
@@ -20,10 +22,33 @@ namespace LanchesMac.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/AdminOrders
-        public async Task<IActionResult> Index()
+        public IActionResult OrderSnacks(int? id)
         {
-              return View(await _context.Orders.ToListAsync());
+            var order = _context.Orders.Include(o => o.OrderItens).ThenInclude(s => s.Snack).FirstOrDefault(or => or.Id == id);
+            if(order == null)
+            {
+                Response.StatusCode = 404;
+                return View("OrderNotFound", id.Value);
+            }
+            OrderSnackViewModel orderSnack = new()
+            {
+                Order = order,
+                OrderDetails = order.OrderItens
+            };
+            return View(orderSnack);
+        }
+
+        // GET: Admin/AdminOrders
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Name")
+        {
+            var result = _context.Orders.AsNoTracking().AsQueryable();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                result = result.Where(o=>o.Name.Contains(filter));
+            }
+            var model = await PagingList.CreateAsync(result, 5, pageindex, sort, "Name");
+            model.RouteValue = new RouteValueDictionary { { "Filter", filter } };
+            return View(model);
         }
 
         // GET: Admin/AdminOrders/Details/5

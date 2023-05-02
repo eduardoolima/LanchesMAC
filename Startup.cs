@@ -1,10 +1,12 @@
-﻿using LanchesMac.Context;
+﻿using LanchesMac.Areas.Services;
+using LanchesMac.Context;
 using LanchesMac.Models;
 using LanchesMac.Repositories;
 using LanchesMac.Repositories.Interfaces;
 using LanchesMac.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace LanchesMac;
 public class Startup
@@ -49,6 +51,9 @@ public class Startup
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => ShoppingCart.GetShoppingCart(sp));
+        services.AddScoped<SalesReportService> ();
+
+        services.Configure<ConfigurationImages>(Configuration.GetSection("ConfigurationImagesFolder"));
 
         services.AddAuthorization(options =>
         {
@@ -60,6 +65,13 @@ public class Startup
         });
 
         services.AddControllersWithViews();
+
+        services.AddPaging(options =>
+        {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        });
+
         services.AddMemoryCache();
         services.AddSession();
     }
