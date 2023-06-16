@@ -52,6 +52,7 @@ public class Startup
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(sp => ShoppingCart.GetShoppingCart(sp));
         services.AddScoped<SalesReportService> ();
+        services.AddScoped<ChartSalesService> ();
 
         services.Configure<ConfigurationImages>(Configuration.GetSection("ConfigurationImagesFolder"));
 
