@@ -21,103 +21,12 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-        services.AddIdentity<IdentityUser, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
-
-        services.Configure<IdentityOptions>(options =>
-        {
-            //options.Password.RequireDigit = true;
-            //options.Password.RequireLowercase = true;
-            //options.Password.RequireNonAlphanumeric = true;
-            //options.Password.RequireUppercase = true;
-            //options.Password.RequiredLength = 6;
-            //options.Password.RequiredUniqueChars = 1;
-
-            options.Password.RequireDigit = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequiredLength = 3;
-            options.Password.RequiredUniqueChars = 1;
-        });
-
-        services.AddTransient<ISnackRepository, SnackRepository>();
-        services.AddTransient<ICategoryRepository, CategoryRepository>();
-        services.AddTransient<IOrderRepository, OrderRepository>();
-        services.AddTransient<ISeedUserRoleInitial, SeedUserRoleInitial>();
-
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        services.AddScoped(sp => ShoppingCart.GetShoppingCart(sp));
-        services.AddScoped<SalesReportService> ();
-        services.AddScoped<ChartSalesService> ();
-
-        services.Configure<ConfigurationImages>(Configuration.GetSection("ConfigurationImagesFolder"));
-
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("Admin",
-                policy =>
-                {
-                    policy.RequireRole("Admin");
-                });
-        });
-
-        services.AddControllersWithViews();
-
-        services.AddPaging(options =>
-        {
-            options.ViewName = "Bootstrap4";
-            options.PageParameterName = "pageindex";
-        });
-
-        services.AddMemoryCache();
-        services.AddSession();
+       
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRoleInitial)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Home/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
-        }
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
-        app.UseRouting();
-
-        seedUserRoleInitial.SeedRoles();
-        seedUserRoleInitial.SeedUsers();
-
-        app.UseSession();
-        app.UseAuthentication();
-        app.UseAuthorization();
-
-        app.UseAuthorization();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
-              name: "areas",
-              pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");            
-
-            endpoints.MapControllerRoute(
-                name: "categoryFilter",
-                pattern: "Snack/{action}/{category?}",
-                defaults: new {Controller = "Snack", action = "Index"});
-
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");            
-        });
-
+        
     }
 }
