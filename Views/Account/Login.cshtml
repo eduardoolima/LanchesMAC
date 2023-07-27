@@ -1,0 +1,40 @@
+﻿ @model LoginViewModel
+
+<table class="table">
+    <tr>
+        <td>
+            <img alt="Login" class="center-block" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAADHElEQVR4nO2cy0uVQRiHn7IiWxRUWhCVYm2jRURRQkhJLVp2sxZBRaCL/oWWYdCFLojYKvMfCNq0ikrDMqOrWEE7IU83AsssJz54PxCxyzmcM/M68z7w2+iB4/swZ5zvnTkDhmEYhmEYhmEYRkmsA9qAHuAx8AH4ISnIz7LftQINpb1FuswDDgO9gCsy94EWoCp0EdrZDQyXIHh6hoDm0MVoZBHQVQbB09MJVIcuTgu1wEAFJOd5CNSQOLXyMa+U5KlTSU3K08WAB8lTR/ZCEqTLo+Q8HSRGcwDJefaQ0Dp5OKDoV6mss48ElJznIAnQp0D0PRLoXTgFmQTqiZg2BZLznCRiehQIztNNxAwqEJznERFTUCA4z3siZlyB4DzfiRinLNHilCVanLJEy7gCuUnM0QUFgpNYdQwqEJzEOvqGAsF5rhMxrQoEJ9HraJDOWWjJ2d9QR+T0KhB9lwRoUSB6PwlQ5eksx5/yIpU9w4xdAUU3kRidASRfJUGq5fSQL8kPUj2phJyHG/J0lmM5iVMD9Fd4JCd7wHGmaaSjQnNystPF39gpH/NyLOGSW10US7bGPSSniYp5XJ+UJ74DwNyi3zVx6qX50y1nqQuyeZBlVFqd3fKa6HsXhmEYhmEYhmEYybAE2AqcAC4At6QDl7VTR4BvkhHpi/TJa84Dx4EtwOLQRWhkpWzYXgPelrFz90a+nZv1TVaQKBuBduC5h6Z/3nB6CpwBNhA5a4BTcj2PD7n/aqOeBtYTEduBm0pOKM000m8De4E5zEIWAMeAZwpkuv/ME+AoMJ9ZQjY6XisQ50pMdiHAPs0jfLPsirhIcgfYhLJrIbJ/LD8VyHFlzi/goobppE7umnORp18uDAjCDuCzAgnOUz4Bjb4lN8pjsEssY8A2X5KXyQ60SzSjwFIfos8pKNYFzlkfokNePOWU5KUP0WMKCnWB89WH6HcKCnWBk7VgK84lBYW6wMk2GSrOKuCjgmJdoGTPDqvx+GWfLwqKdgEeWppCnPS8IquQCQUSXIUyITVeBtb6lmwYhmEYhmEYhmEYhoFCfgNnsqKzarSQ4AAAAABJRU5ErkJggg==">
+        </td>
+        <td>
+            <div class="row">
+                <div class="col-10 col-md-10 col-lg-10">
+                    <h4>Login</h4>
+                    <form asp-controller="Account" asp-action="Login" method="post" class="form-horizontal" role="form">
+                        <hr />
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="form-group">
+                            <label asp-for="UserName" class="col-md-2 control-label"></label>
+                            <div class="col-md-6">
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="col-md-2 control-label"></label>
+                            <div class="col-md-6">
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <input type="submit" class="btn btn-success" value="Log in" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

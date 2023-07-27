@@ -1,0 +1,34 @@
+﻿@model LoginViewModel
+
+<table class="table">
+    <tr>
+        <td>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFe0lEQVR4nO2aa2wUVRTHLwTRBN/xHfxgNMJuLfGrWjoPWFLU0Jm9M+lM00hAQ+gMtBqDRoKugWCIIcZEEV8JVKMRElCjQoS297ZNICKagpLAFyH2YffOUvogWfrYjrlbti3truy8t7L/5HST3Xnc3//cc+48CkBRRRVVVIFp3UnzJthsLIOI7JQwaZQw6YCI9EvYMOknROSMhI39Ek68ILd23wv+L1Iae+6XsLEVIoNQ2HwCIjIsIbJXRBefALNVDDLnyZjUZ7JsKxAZg5h8IR/ruxvMtqxDbLTZBp8+IzDpjDbHnwGzQVWt5HGIyN9uwU+aYCQlRBRQyBJRYiHExnm34a8pCWTU+AJTVl17F6/ULuFU7Vka5dV6KbO6/s5c269G52+RsNHuGfxkXIGYLPUEOlLz6gJW1etZVWtlVH2UVXVzatDvGEVvodvQbafuC5Hxvg/wV4N0yEd773AVnlH1l1hF754OnTPottUbXqT7yrinFCKS8s8AulQan7sCXlGx8WZG1fbmDT4zvo4e6TzkJ/xEP2i6WOIs60xsHqtqRxzApyOy6b0xqTnurwHjpfClMwNU7UOn8JlYub0hCANGVNR1jy14Vq1l3ILPROVXJxxDKS2G2Ra/Yg4Mp8ztp/vzKIX4Gjv8c1hFO+62Acvr36G16Qj+18SQmdHPXcl8esEBy/Tlqv6U2/CZEPa3uwLfO5Qy9V9689m33bIBjKLt8MqAle9+Ywv+hDEJ3zeUMl8+kRe8KSEjbtkA1oPpP1EGr+yYMcjDXUlzcGTM3HV2MK/M1+ULf7UR2jGgwysD+HWbZwxyYHgsDUf/7j436CJ82oCEZQMYVbvilQFsTd2MQdLMj1swbsJHZwddgk9fEZ6zPgNUjXg2A9a+lnWgNPNTTfhrcMQx/LgBpMnGDNBPedYDNm7LOVia+YwJthpelpAxecu6AYre4JUBFbHP/nPAU01wCp82AMXLLBvAVddGvTJgVUPbdQe988yA2didNDfkt87nnv6YdNKnzTbv+zXX+wBH6/9otyMoa9k3NgG7YhWtzm0Dnt/1k2/wEiIDlehSzidU15Usx+azqva7W/DL1r89CJt7fDMAYuMwcKrliv4Qo2pdTuEZVet57oMfWJoV3wyws/5nE33wySj6Bdvwin6BHoMeC2KyEmIy6lMJjLn2wiRSs/4+VtUPWzdAO1Qmb7zmPR7EZK1fJsg4EQFuiquqXcEqehujaKncGae/aa3lip7z5BAnon6UA8TG68ALMbL2AKPqa1hF38oq+p6rsZV+R3/L5xhVTfFHISLHvO0D5E1Q0DLNOXILqYKYnLUBl6Kv0SEi30NM+rJkPxlFxmLXxhpm5FvDvCiFeaEhzImnQ7zYG+ZFc2rQ70KccIpuU8JWwiWRyIJ8jYi2kHIJG5/S7p0bnIxImBynmZVb/nnkmjfNKF4GsbGN3vxARA669rJ08VLxwRAvfhLmheR04OuHkAxxwsf0GFbOSZ/kyij+JG1i0eY4jKLEcvq/APKf5nzgm2KxuSFO2BLixMvWwafNDE68HOLFzfSYYDYoTKc7Jxx0Cp5lRvz4WEXF7WAWwP/mPvxEnKTnAAWpWGxumBe/8xB+PDjx24IshxAnbPEcfsIE4Q1QSFpMu70LDc9KY7S6OniqUHqp8yn7k6WwGxSCwumLHDvrvNMQkoueXnVb0PwgzIuy//DjUcIJ0aD5QfryNiADQpy4pxAM+CMwA3ihPXgDOKEvOAPES4VgwGhQBtBzF0ITNIOMoPlB0QC+OAPMYgnwN3YPGAhwFegLmh/Q+/MAZ8C+oPnBIm7VomxPeb3PvpgoZcSFoBBUsqLy4TAv7g9zYr8P4PQc+woGvqiiigI3kv4F19Ol3JAyyS0AAAAASUVORK5CYII="
+                alt="Registrar Usuário" />
+            </td>
+        <td>
+            <div class="row">
+                <div class="col-10 col-md-10 col-lg-10">
+                    <h4>Registrar usuário</h4>
+                    <form asp-controller="Account" asp-action="Register" method="post">
+                        <hr />
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="UserName"> </label>
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success " value="Registrar" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </td>
+    <tr>
+</table>

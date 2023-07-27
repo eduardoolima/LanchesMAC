@@ -1,0 +1,13 @@
+﻿@model ShoppingCartViewModel
+
+@if(Model.ShoppingCart.ShoppingCartItems.Count > 0)
+{
+    <a asp-controller="ShoppingCart" asp-action="Index">
+        <span>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABUElEQVR4nO2UPU4DMRCFTRMOgDhBJMQZSAOngCOkow0HSBbuAKLMBbgBooJyqzQ09nsxsaP80IKRFxMhFJBsR0uK/SQ3q5nZNzPPFqKhoWHbMMCDJV11gMWU7NUrgLxfCSCdAd5nWrdrFfGFAYZhEl3xH1igG6YwDIKev08n+gDXUQImSh2GRDrndixwmyWAPE2ZgvLJXkx0shDClWXLAksDvC2A/dp9MCFPQvePG/FBLBYYhAb6IoXJDx9ECyCfqhWSx0kCcnwwl3LP794Cr2402hWpmEQfWPIsrO8u+ec5PrDATZU3Hp+LHGZat/2TnHL3fd6LlAcilynZs8A88uVbGvJCbAJXli0DXFkA3pQGKPy32JhkDHC5psNBbEz2VbRaH1mlOqG4io3JF6BUZ1WclLExyRigWDPefmxMMu7TYEXoUvrCv5jwz5iGhq3jA75LxhMsmUnSAAAAAElFTkSuQmCC">
+        </span>
+        <span style="color:white">
+            @Model.ShoppingCart.ShoppingCartItems.Count
+        </span>
+    </a>
+}
